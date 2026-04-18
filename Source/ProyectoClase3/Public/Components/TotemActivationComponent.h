@@ -20,7 +20,7 @@ public:
 	void StartActivation();
 	
 	
-	UPROPERTY(BlueprintAssignable)
+	UPROPERTY()
 	FOnActivationFinished OnActivationFinished;
 
 protected:

@@ -22,7 +22,7 @@ AItemPuerta::AItemPuerta()
 }
 
 
-void AItemPuerta::OnTotemActivated()
+void AItemPuerta::TotemActivatedCounter()
 {
 	ActivatedTotems++;
 
@@ -53,6 +53,7 @@ void AItemPuerta::BeginPlay()
 {
 	Super::BeginPlay();
 
+	
 	TArray<AActor*> FoundActors;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AItemTotem::StaticClass(), FoundActors);
 
@@ -67,7 +68,7 @@ void AItemPuerta::BeginPlay()
 
 		if (Totem)
 		{
-			Totem->OnTotemActivated.AddDynamic(this, &AItemPuerta::OnTotemActivated);
+			Totem->OnTotemActivated.AddDynamic(this, &AItemPuerta::TotemActivatedCounter);
 		}
 	}
 }

@@ -30,7 +30,6 @@ void AItemTotem::BeginPlay()
 
 void AItemTotem::HandleActivationFinished()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Orange, TEXT("Totem terminó activación y envia broadcast"));
 	OnTotemActivated.Broadcast();
 }
 

@@ -3,7 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "ItemTotem.h"
 #include "GameFramework/Actor.h"
 #include "ItemPuerta.generated.h"
 
@@ -28,11 +27,9 @@ public:
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 	TObjectPtr<USceneComponent> Root;
 	
-	UPROPERTY(EditAnywhere)
-	TArray<AItemTotem*> Totems;
 
 	UFUNCTION()
-	void OnTotemActivated();
+	void TotemActivatedCounter();
 
 	UFUNCTION()
 	void OpenDoor();
