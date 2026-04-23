@@ -42,7 +42,8 @@ void UTotemActivationComponent::StartActivation()
 	{
 		return;
 	}
-
+	
+	bIsActivated = true;
 	GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Yellow, TEXT("Activando Totem..."));
 
 	GetWorld()->GetTimerManager().SetTimer(

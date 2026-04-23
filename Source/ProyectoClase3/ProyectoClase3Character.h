@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Logging/LogMacros.h"
+#include "Components/ExperienceComponent.h"
 #include "ProyectoClase3Character.generated.h"
 
 class UHealthComponent;
@@ -31,6 +32,9 @@ class AProyectoClase3Character : public ACharacter
 	/** Follow camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components", meta = (AllowPrivateAccess = "true"))
 	UCameraComponent* FollowCamera;
+	
+	
+	
 	
 protected:
 
@@ -61,6 +65,13 @@ public:
 	
 	UFUNCTION()
 	void InteractOtherActor();
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TObjectPtr<UExperienceComponent> ExperienceComponent;
+	
+	UFUNCTION()
+	void OrbeXPTaken();
+
 
 protected:
 

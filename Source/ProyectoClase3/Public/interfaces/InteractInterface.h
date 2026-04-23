@@ -26,3 +26,4 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	void Interact(AActor* Actor);
 };
+

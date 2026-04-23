@@ -54,6 +54,8 @@ AProyectoClase3Character::AProyectoClase3Character()
 	
 	HealthComponent = CreateDefaultSubobject<UHealthComponent>("HealthComponent");
 	
+	ExperienceComponent = CreateDefaultSubobject<UExperienceComponent>(TEXT("ExperienceComponent"));
+	
 }
 
 
@@ -149,6 +151,22 @@ void AProyectoClase3Character::DoJumpEnd()
 	StopJumping();
 }
 
+void AProyectoClase3Character::OrbeXPTaken()
+{
+	if (ExperienceComponent)
+	{
+		ExperienceComponent->AddExperience(120.f);
+
+		GEngine->AddOnScreenDebugMessage(
+			-1,
+			2.f,
+			FColor::Green,
+			FString::Printf(TEXT("Level: %d | XP: %.0f"), 
+				ExperienceComponent->Level,
+				ExperienceComponent->CurrentXP)
+		);
+	}
+}
 
 
 void AProyectoClase3Character::NotifyActorBeginOverlap(AActor* OtherActor)
