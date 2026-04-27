@@ -6,6 +6,8 @@
 #include "GameFramework/Character.h"
 #include "Logging/LogMacros.h"
 #include "Components/ExperienceComponent.h"
+#include "Components/StatsComponent.h"
+#include "Components/TalentComponent.h"
 #include "ProyectoClase3Character.generated.h"
 
 class UHealthComponent;
@@ -69,8 +71,17 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TObjectPtr<UExperienceComponent> ExperienceComponent;
 	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TObjectPtr<UStatsComponent> StatsComponent;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TObjectPtr<UTalentComponent> TalentComponent;
+	
 	UFUNCTION()
 	void OrbeXPTaken();
+
+	UFUNCTION()
+	void HandleLevelUp(int32 NewLevel);
 
 
 protected:
@@ -127,6 +138,8 @@ private:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Health", meta=(AllowPrivateAccess = "true"))
 	TObjectPtr<UHealthComponent> HealthComponent;
+	
+	
 	
 };
 

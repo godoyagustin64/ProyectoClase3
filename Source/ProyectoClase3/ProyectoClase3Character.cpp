@@ -56,6 +56,10 @@ AProyectoClase3Character::AProyectoClase3Character()
 	
 	ExperienceComponent = CreateDefaultSubobject<UExperienceComponent>(TEXT("ExperienceComponent"));
 	
+	StatsComponent = CreateDefaultSubobject<UStatsComponent>(TEXT("StatsComponent"));
+	
+	TalentComponent = CreateDefaultSubobject<UTalentComponent>(TEXT("TalentComponent"));
+	
 }
 
 
@@ -87,7 +91,37 @@ void AProyectoClase3Character::SetupPlayerInputComponent(UInputComponent* Player
 void AProyectoClase3Character::BeginPlay()
 {
 	Super::BeginPlay();
+	
 	HealthComponent->OnHealthChanged.AddDynamic(this, &AProyectoClase3Character::OnRecieveDamage);
+	if (ExperienceComponent)
+	{
+		ExperienceComponent->OnLevelUp.AddDynamic(this, &AProyectoClase3Character::HandleLevelUp);
+	}
+}
+
+
+void AProyectoClase3Character::HandleLevelUp(int32 NewLevel)
+{
+	if (StatsComponent)
+	{
+		StatsComponent->HandleLevelUp(NewLevel);
+	}
+
+	if (TalentComponent)
+	{
+		TalentComponent->AddSkillPoint();
+	}
+	
+
+
+	// Debug
+	GEngine->AddOnScreenDebugMessage(
+		-1,
+		2.f,
+		FColor::Green,
+		FString::Printf(TEXT("Level Up! SkillPoints: %d"),
+			TalentComponent ? TalentComponent->SkillPoints : 0)
+	);
 }
 
 
