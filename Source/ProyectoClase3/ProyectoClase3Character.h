@@ -8,6 +8,7 @@
 #include "Components/ExperienceComponent.h"
 #include "Components/StatsComponent.h"
 #include "Components/TalentComponent.h"
+#include "Components/EquipmentComponent.h"
 #include "ProyectoClase3Character.generated.h"
 
 class UHealthComponent;
@@ -76,6 +77,9 @@ public:
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TObjectPtr<UTalentComponent> TalentComponent;
+	
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UEquipmentComponent> EquipmentComponent;
 	
 	UFUNCTION()
 	void OrbeXPTaken();

@@ -60,6 +60,8 @@ AProyectoClase3Character::AProyectoClase3Character()
 	
 	TalentComponent = CreateDefaultSubobject<UTalentComponent>(TEXT("TalentComponent"));
 	
+	EquipmentComponent = CreateDefaultSubobject<UEquipmentComponent>("EquipmentComponent");
+	
 }
 
 
