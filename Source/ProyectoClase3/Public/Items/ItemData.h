@@ -6,6 +6,8 @@
 #include "Engine/DataAsset.h"
 #include "ItemData.generated.h"
 
+class AEquipmentActor;
+
 UCLASS(BlueprintType)
 class PROYECTOCLASE3_API UItemData : public UPrimaryDataAsset
 {

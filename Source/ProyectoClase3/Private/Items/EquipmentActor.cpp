@@ -13,12 +13,29 @@ AEquipmentActor::AEquipmentActor()
 	Mesh->SetGenerateOverlapEvents(true);
 }
 
-void AEquipmentActor::NotifyActorBeginOverlap(AActor* OtherActor)
-{
-	ACharacter* Char = Cast<ACharacter>(OtherActor);
-	if (!Char) return;
 
-	UEquipmentComponent* EquipComp = Char->FindComponentByClass<UEquipmentComponent>();
+void AEquipmentActor::BeginPlay()
+{
+	Super::BeginPlay();
+
+	Initialize(ItemData);
+}
+
+void AEquipmentActor::Initialize(UEquipmentItemData* NewItemData)
+{
+	ItemData = NewItemData;
+
+	if (ItemData && ItemData->ItemMesh)
+	{
+		Mesh->SetStaticMesh(ItemData->ItemMesh);
+	}
+}
+
+void AEquipmentActor::Interact_Implementation(AActor* Actor)
+{
+	if (!Actor) return;
+
+	UEquipmentComponent* EquipComp = Actor->FindComponentByClass<UEquipmentComponent>();
 	if (!EquipComp) return;
 
 	EquipComp->EquipItem(ItemData);

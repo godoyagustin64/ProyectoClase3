@@ -7,6 +7,8 @@
 #include "EquipmentComponent.generated.h"
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
+
+
 class PROYECTOCLASE3_API UEquipmentComponent : public UActorComponent
 {
 	GENERATED_BODY()
@@ -21,6 +23,10 @@ private:
 	TMap<EEquipmentSlot, AActor*> EquippedActors;
 
 	void UnequipSlot(EEquipmentSlot Slot);
+	
+	TMap<EEquipmentSlot, UEquipmentItemData*> EquippedItems;
 
 	FName GetSocketName(EEquipmentSlot Slot) const;
+	
+	void DropItem(EEquipmentSlot Slot);
 };

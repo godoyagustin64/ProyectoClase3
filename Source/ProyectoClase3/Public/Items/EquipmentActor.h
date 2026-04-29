@@ -3,10 +3,11 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "EquipmentItemData.h"
+#include "interfaces/InteractInterface.h"
 #include "EquipmentActor.generated.h"
 
 UCLASS()
-class PROYECTOCLASE3_API AEquipmentActor : public AActor
+class PROYECTOCLASE3_API AEquipmentActor : public AActor, public IInteractInterface
 {
 	GENERATED_BODY()
 
@@ -18,8 +19,13 @@ protected:
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* Mesh;
 
-	UPROPERTY(EditAnywhere)
-	UEquipmentItemData* ItemData;
+	virtual void BeginPlay() override;
 
-	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UEquipmentItemData* ItemData;
+	
+	void Initialize(UEquipmentItemData* NewItemData);
+	
+	virtual void Interact_Implementation(AActor* Actor) override;
 };
